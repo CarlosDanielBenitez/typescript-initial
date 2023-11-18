@@ -21,21 +21,46 @@ avengers.forEach(element => {
 
 });
 
-// type Alias
+// type Alias     ? significa opcional
+// type Hero = {
+//     id?: number,
+//     name: string,
+//     age: number
+// }
+// const hero: Hero = {
+//     name: "thor",
+//     age: 1500
+// }
+
+// function createHero(hero: Hero): Hero {
+//     const {name, age} = hero
+//     return { name, age }
+// }
+
+// const thor = createHero({name: "thor", age: 1500});
+
+//! optional properties
+// readonly es distinto de  Object.freeze()
 type Hero = {
+    readonly id?: string,
     name: string,
     age: number,
     isActive?: boolean
 }
-const hulk: Hero = {
-    name: "hulk",
-    age: 22
+const hero: Hero = {
+    name: "thor",
+    age: 1500
 }
 
-function createHero(name: string, age: number): Hero {
-    return { name, age }
+function createHero(hero: Hero): Hero {
+    const { name, age } = hero
+    return {
+        id: crypto.randomUUID(),
+        name,
+        age,
+        isActive: true
+    }
 }
 
-const thor = createHero ("Thor", 22);
-
-// optional properties
+const thor = createHero({ name: "thor", age: 1500 });
+console.log({ thor });
